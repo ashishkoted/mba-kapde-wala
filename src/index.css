@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, Arial, sans-serif;
+  background: #f9fafb;
+}
+
+.card {
+  @apply bg-white dark:bg-gray-900 dark:text-white;
+}
+
+.input {
+  @apply border rounded-xl px-4 py-3 bg-white dark:bg-gray-900 dark:border-gray-700 dark:text-white;
+}
+
+.muted {
+  @apply text-gray-500 dark:text-gray-400;
+}
