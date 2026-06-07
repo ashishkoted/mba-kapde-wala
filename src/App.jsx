@@ -21,8 +21,25 @@ import AdminProducts from "./admin/AdminProducts";
 import AdminOrders from "./admin/AdminOrders";
 import AdminCustomers from "./admin/AdminCustomers";
 import AdminCoupons from "./admin/AdminCoupons";
+import { useEffect, useState } from "react";
+import Loading from "./pages/Loading";
+
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1200);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-white">
       <Routes>
@@ -61,6 +78,8 @@ function App() {
                 <Route path="/wishlist" element={<Wishlist />} />
                 <Route path="/track-order" element={<OrderTracking />} />
                 <Route path="/track-order/:id" element={<OrderTracking />} />
+                <Route path="/loading" element={<Loading />} />
+                <Route path="*" element={<ErrorPage />} />
               </Routes>
 
               <Footer />
